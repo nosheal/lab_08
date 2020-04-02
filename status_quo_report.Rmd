@@ -104,7 +104,7 @@ us_practices_totals <- us_practices_totals %>%
 
 
 ```{r size_ops, echo = FALSE, fig.cap = "Percent of US Operations Adopting Representative Soil Health Practices, by Farm Size. (Crop rotation was omitted, as acreage data are not available.)"}
-us_practices_totals %>% 
+size_ops <- us_practices_totals %>% 
   filter(size != "All Farms") %>% 
   mutate(size = str_replace(size, "FARM AREA:", "")) %>% 
   mutate(size = str_replace(size, "ACRES", ""))  %>% 
@@ -119,6 +119,14 @@ us_practices_totals %>%
   labs(title = "Percent of US Operations Adopting Soil Health Practices", subtitle = "By Farm Size", fill = "Practice", x = "Farm Size (in Acres)", y = "Percent of Operations") + 
   theme_hc() +
   theme(legend.position = "right")
+```
+
+```{r}
+library(plotly)
+```
+
+```{r}
+ggplotly(size_ops)
 ```
 
 
